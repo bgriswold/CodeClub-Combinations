@@ -1,4 +1,4 @@
 CodeClub-Set
 ======================
 
-Fun C# solution which simulates the classic card game Set
+C# solution which generates the combinations of K distinct objects chosen from the N elements of a list.
