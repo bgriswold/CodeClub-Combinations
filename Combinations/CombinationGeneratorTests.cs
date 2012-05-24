@@ -1,10 +1,32 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 namespace Combinations
 {
     public class CombinationGeneratorTests : TestBase
     {
+        [Test]
+        public void List_Of_12_Should_Return_200_Sets_Of_3()
+        {
+            // C(12,3) = 220
+            var list = Enumerable.Range(1, 12).ToList();
+            var result = CombinationGenerator.Combinations(3, list);
+            var expected = new List<List<int>>();
+            for (int i = 0; i < 12; i++)
+            {
+                for (int j = i+1; j < 12; j++)
+                {
+                    for (int k = j+1; k < 12; k++)
+                    {
+                        expected.Add(new List<int>{list[i], list[j], list[k]});
+                    }
+                }
+            }
+
+            Assert(expected, result);
+            result.Count.Should().Be(220);
+        }
         [Test]
         public void List_Of_1_Should_Return_0_Sets_Of_2()
         {
